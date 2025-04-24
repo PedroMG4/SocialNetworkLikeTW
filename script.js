@@ -12,6 +12,8 @@ function getData(){
     .catch(error => console.error('Error al llamar a la API', error))
 }
 
+getData()
+
 function renderPostList(){
     const postList = document.getElementById('postList');
     postList.innerHTML = '';
@@ -62,7 +64,7 @@ function postData(){
     })
         .then(res => res.json())
         .then(data => {
-            posts.push(data)
+            posts.unshift(data)
             renderPostList();
             postTitleInput.value = ''
             postBodyInput.value = ''
@@ -102,4 +104,19 @@ function updatePost(id){
         renderPostList()
     })
     .catch(error => console.error('Error al querer actualizar un posteo', error))
+}
+
+function deletePost(id){
+    fetch(`${urlBase}/${id}`,{
+        method: 'DELETE',
+    })
+    .then(res => {
+        if(res.ok){
+            posts = posts.filter(post => post.id != id)
+            renderPostList();
+        }else{
+            alert('Hubo un error y no se pudo eliminar el posteo')
+        }
+    })
+    .catch(error => console.error('Hubo un error: ', error))
 }

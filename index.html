@@ -12,10 +12,6 @@
 <body>
 
     <h1>Red Social parecida a twitter</h1>
-    <h2>Ver posteos</h2>
-    <button onclick="getData()">Ver Posteos</button>
-    <ul id="postList"></ul>
-
     <h2>¿Que estás pensando?</h2>
     <form id="postForm" onsubmit="event.preventDefault(); postData()">
         <label for="postTitle">Título: </label>
@@ -24,6 +20,7 @@
         <textarea type="text" id="postBody" required></textarea>
         <button type="submit">Enviar</button>
     </form>
+    <ul id="postList"></ul>
 
 
     <script src="script.js"></script>
